@@ -1,14 +1,25 @@
 from django.db import models
 
 
-# Create your models here.
-class Vaccine(models.models):
-    name = models.CharField(max_length=50)
-    Type = models.CharField(max_length=50)
-    country_made = models.CharField(max_length=150)
+class Child(models.Model):
+    name = models.CharField(max_length=100)
+    date_of_birth = models.DateField()
+    # Other fields as needed
+
+
+class Serum(models.Model):
+    name = models.CharField(max_length=100)
+    # Other fields as needed
+
+
+class Visit(models.Model):
+    child = models.ForeignKey(Child, on_delete=models.CASCADE)
+    visit_date = models.DateField()
+    # Other fields as needed
 
 
 class Dose(models.Model):
-    name = models.CharField(max_length=150)
-    dose_volume = models.CharField(max_length=150)
-    for_age = models.FloatField()
+    visit = models.ForeignKey(Visit, on_delete=models.CASCADE)
+    serum = models.ForeignKey(Serum, on_delete=models.CASCADE)
+    dose_number = models.PositiveIntegerField()
+    # Other fields as needed
