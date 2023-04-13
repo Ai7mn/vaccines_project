@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-*mmjwul70!232^pvmys@0nn4+g0&d@urj8f%tm(@d*xq@xvd+5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'dozes',
 ]
 
 MIDDLEWARE = [
@@ -75,8 +76,11 @@ WSGI_APPLICATION = 'vaccines_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'vaccines',
+        'USER': 'Aiman',
+        'PORT': '3307',
+        'PASSWORD': 'Ayman1@1',
     }
 }
 
