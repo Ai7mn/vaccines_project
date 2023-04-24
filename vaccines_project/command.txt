@@ -1,0 +1,6 @@
+SELECT dozes_visit.*, dozes_child.*, dozes_dose.*, dozes_serum.*
+FROM dozes_visit
+JOIN dozes_child ON dozes_visit.child_id = dozes_child.id
+JOIN dozes_visit_dose ON dozes_visit_dose.visit_id = dozes_visit.id
+JOIN dozes_dose ON dozes_dose.id = dozes_visit_dose.dose_id
+JOIN dozes_serum ON dozes_dose.serum_id = dozes_serum.id

@@ -54,6 +54,7 @@ class Visit(models.Model):
     child = models.ForeignKey(Child, on_delete=models.CASCADE, verbose_name="الطفل")
     visit_date = models.DateField(auto_now=True, verbose_name="تاريخ الزيارة")
     dose = models.ManyToManyField('Dose', verbose_name="الجرع")
+    is_taken = models.BooleanField(default=False)
     next_visit = models.PositiveIntegerField(null=True, verbose_name="الزيارة القادمة بعد")
 
     # Other fields as needed
@@ -71,3 +72,7 @@ class Dose(models.Model):
 
     def __str__(self):
         return f" جرعة " + str(self.serum.name) + " رقم " + str(self.dose_number)
+
+
+
+
