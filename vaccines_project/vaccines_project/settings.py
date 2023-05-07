@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'dozes',
 ]
-
+ 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -77,10 +77,10 @@ WSGI_APPLICATION = 'vaccines_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'vaccines',
-        'USER': 'Aiman',
-        'PORT': '3307',
-        'PASSWORD': 'Ayman1@1',
+        'NAME': 'vaccineApi',
+        'USER': 'root',
+        'PORT': '3306',
+        'PASSWORD': '',
     }
 }
 
