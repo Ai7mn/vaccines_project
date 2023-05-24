@@ -70,7 +70,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'vaccines_project.wsgi.application'
 
-CA_LOC = os.path.join(BASE_DIR, "DigiCertGlobalRootCA.crt.pem")
+CA_LOC = os.path.join(BASE_DIR, "../DigiCertGlobalRootCA.crt.pem")
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -82,9 +82,6 @@ DATABASES = {
         'NAME': 'vaccineapi',
         'USER': 'ali',
         'PASSWORD': 'Ali1@1',
-        'OPTIONS':  {
-            'ssl': {'ca': CA_LOC}
-        }
     },
     'default2': {
         'ENGINE': 'django.db.backends.mysql',

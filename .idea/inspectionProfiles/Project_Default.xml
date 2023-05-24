@@ -4,7 +4,7 @@
     <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="ignoredPackages">
         <value>
-          <list size="110">
+          <list size="112">
             <item index="0" class="java.lang.String" itemvalue="tzlocal" />
             <item index="1" class="java.lang.String" itemvalue="PyYAML" />
             <item index="2" class="java.lang.String" itemvalue="defusedxml" />
@@ -115,6 +115,8 @@
             <item index="107" class="java.lang.String" itemvalue="django-timezone-field" />
             <item index="108" class="java.lang.String" itemvalue="click-plugins" />
             <item index="109" class="java.lang.String" itemvalue="openpyxl" />
+            <item index="110" class="java.lang.String" itemvalue="PyJWT" />
+            <item index="111" class="java.lang.String" itemvalue="dj-database-url" />
           </list>
         </value>
       </option>

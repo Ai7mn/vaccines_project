@@ -28,26 +28,26 @@ class Directorate(models.Model):
     def __str__(self):
         return str(self.name)
 
-    
-class recommends(models.Model):
-      user= models.ForeignKey(User, on_delete=models.CASCADE)
-      recommend_text = models.TextField()
-      
-    
-      def __str__(self):
-            return str(self.user.username)
-    
-    
-    
+
+class Recommendations(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    recommend_text = models.TextField()
+
+    class Meta:
+        db_table = 'dozes_recommends'
+
+    def __str__(self):
+        return str(self.user.username)
+
 
 class Child(models.Model):
-    first_name = models.CharField(max_length=100,null=True, verbose_name="اسم الأول")
+    first_name = models.CharField(max_length=100, null=True, verbose_name="اسم الأول")
     second_name = models.CharField(max_length=100, null=True, verbose_name="اسم الأب")
     last_name = models.CharField(max_length=100, null=True, verbose_name="اللقب")
     serial = models.CharField(max_length=120, null=True, default="ABC", unique=True, verbose_name='الرقم التسلسلي')
-    gender = models.CharField(max_length=100,choices=GENDER, verbose_name="الجنس")
-    directorate = models.ForeignKey(Directorate,null=True, on_delete=models.CASCADE, verbose_name="المديرية")
-    date_of_birth = models.CharField(max_length=100,null=True, verbose_name="تاريخ ميلاد الطفل")
+    gender = models.CharField(max_length=100, choices=GENDER, verbose_name="الجنس")
+    directorate = models.ForeignKey(Directorate, null=True, on_delete=models.CASCADE, verbose_name="المديرية")
+    date_of_birth = models.CharField(max_length=100, null=True, verbose_name="تاريخ ميلاد الطفل")
 
     # Other fields as needed
 
@@ -55,7 +55,7 @@ class Child(models.Model):
 class Serum(models.Model):
     name = models.CharField(max_length=100, verbose_name="اسم اللقاح")
     type = models.CharField(max_length=100, default=0, verbose_name="نوع اللقاح")
-    made_in = models.CharField(max_length=100,null=True, verbose_name="بلد المنشأ")
+    made_in = models.CharField(max_length=100, null=True, verbose_name="بلد المنشأ")
 
     def __str__(self):
         return self.name
@@ -63,7 +63,7 @@ class Serum(models.Model):
 
 class Visit(models.Model):
     child = models.ForeignKey(Child, on_delete=models.CASCADE, verbose_name="الطفل")
-    visit_date = models.CharField(max_length=100,null=True, verbose_name="تاريخ الزيارة")
+    visit_date = models.CharField(max_length=100, null=True, verbose_name="تاريخ الزيارة")
     dose = models.ManyToManyField('Dose', verbose_name="الجرع")
     is_taken = models.BooleanField(default=False)
     next_visit = models.PositiveIntegerField(null=True, verbose_name="الزيارة القادمة بعد")
@@ -77,13 +77,9 @@ class Visit(models.Model):
 class Dose(models.Model):
     serum = models.ForeignKey(Serum, on_delete=models.CASCADE, verbose_name="اللقاح")
     dose_number = models.PositiveIntegerField(verbose_name="رقم الجرع")
-    production_date = models.CharField(max_length=100,null=True, verbose_name="تاريخ الإنتاج")
-    exp_date = models.CharField(max_length=100,null=True, verbose_name="تاريخ الإنتهاء")
+    production_date = models.CharField(max_length=100, null=True, verbose_name="تاريخ الإنتاج")
+    exp_date = models.CharField(max_length=100, null=True, verbose_name="تاريخ الإنتهاء")
     for_age = models.CharField(max_length=100, null=True, verbose_name="لعمر")
 
     def __str__(self):
         return f" جرعة " + str(self.serum.name) + " رقم " + str(self.dose_number)
-
-
-
-
