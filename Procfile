@@ -1,1 +1,1 @@
-web: gunicorn vaccines_project/vaccines_project.wsgi
+web: gunicorn vaccines_project.wsgi

@@ -83,13 +83,6 @@ DATABASES = {
         'USER': 'ali',
         'PASSWORD': 'Ali1@1',
     },
-    'default2': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'vaccineApi',
-        'USER': 'root',
-        'PORT': '3306',
-        'PASSWORD': '',
-    }
 }
 
 

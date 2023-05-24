@@ -28,10 +28,6 @@ azure-core==1.26.4
 azure-storage-blob==12.16.0
 azure-storage-queue==12.6.0
 django-apptemplates
-django-extensions
-django-active-link
-django_admin_tools
-stripe
 gunicorn>=20.0,<21.0
 dj-database-url>=1.0,<2.0
 whitenoise>=6.0,<7.0
