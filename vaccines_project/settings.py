@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'dozes',
+    'accounts',
 ]
  
 MIDDLEWARE = [
@@ -79,12 +80,21 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'HOST': 'devicesarenadb.mysql.database.azure.com',
         'PORT': '3306',
+        'NAME': 'vaccineapi2',
+        'USER': 'aiman',
+        'PASSWORD': 'Ayman1@1',
+    },
+    'db2': {
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': 'devicesarenadb.mysql.database.azure.com',
+        'PORT': '3306',
         'NAME': 'vaccineapi',
-        'USER': 'ali',
-        'PASSWORD': 'Ali1@1',
+        'USER': 'aiman',
+        'PASSWORD': 'Ayman1@1',
     },
 }
 
+AUTH_USER_MODEL = 'accounts.MyUser'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

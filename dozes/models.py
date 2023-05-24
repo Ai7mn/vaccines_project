@@ -1,9 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
 
 TYPE = ((0, "شراب"), (1, "حقنة"), (2, "كبسولة"))
 GENDER = ((0, "ذكر"), (1, "أنثى"))
 AGES = ((0, "بعد الولادة مباشرة"), (1, "شهر ونصف"), (2, "شهرين ونصف"))
+
+User = settings.AUTH_USER_MODEL
 
 
 class Governorate(models.Model):
