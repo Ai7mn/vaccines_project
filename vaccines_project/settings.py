@@ -30,6 +30,8 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 
+AUTH_USER_MODEL = 'accounts.MyUser'
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -39,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'dozes',
     'accounts',
+
 ]
  
 MIDDLEWARE = [
@@ -80,21 +83,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'HOST': 'devicesarenadb.mysql.database.azure.com',
         'PORT': '3306',
-        'NAME': 'vaccineapi2',
-        'USER': 'aiman',
-        'PASSWORD': 'Ayman1@1',
-    },
-    'db2': {
-        'ENGINE': 'django.db.backends.mysql',
-        'HOST': 'devicesarenadb.mysql.database.azure.com',
-        'PORT': '3306',
         'NAME': 'vaccineapi',
-        'USER': 'aiman',
-        'PASSWORD': 'Ayman1@1',
+        'USER': 'ali',
+        'PASSWORD': 'Ali1@1',
     },
+
 }
 
-AUTH_USER_MODEL = 'accounts.MyUser'
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
