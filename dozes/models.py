@@ -2,8 +2,10 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
 
+from accounts.models import MyUser
+
 TYPE = (("شراب", "شراب"), ("حقنة", "حقنة"), ("كبسولة", "كبسولة"))
-GENDER = ((0, "ذكر"), (1, "أنثى"))
+GENDER = (("ذكر", "ذكر"), ("أنثى", "أنثى"))
 AGES = ((0, "بعد الولادة مباشرة"), (1, "شهر ونصف"), (2, "شهرين ونصف"))
 
 User = settings.AUTH_USER_MODEL
@@ -44,15 +46,29 @@ class Recommendations(models.Model):
 
 
 class Child(models.Model):
+    user = models.OneToOneField(MyUser, null=True, blank=True, on_delete=models.CASCADE, verbose_name="المستخدم")
     first_name = models.CharField(max_length=100, null=True, verbose_name="اسم الأول")
     second_name = models.CharField(max_length=100, null=True, verbose_name="اسم الأب")
     last_name = models.CharField(max_length=100, null=True, verbose_name="اللقب")
+    phone = models.CharField(null=True, max_length=9, verbose_name='رقم الجوال')
     serial = models.CharField(max_length=120, null=True, default="ABC", unique=True, verbose_name='الرقم التسلسلي')
     gender = models.CharField(max_length=100, choices=GENDER, verbose_name="الجنس")
     directorate = models.ForeignKey(Directorate, null=True, on_delete=models.CASCADE, verbose_name="المديرية")
     date_of_birth = models.CharField(max_length=100, null=True, verbose_name="تاريخ ميلاد الطفل")
 
     # Other fields as needed
+    def __str__(self):
+        return f"{self.first_name} {self.second_name}"
+
+    def save(self, *args, **kwargs):
+        user = MyUser()
+        user.username = self.serial
+        user.first_name = self.first_name
+        user.last_name = self.last_name
+        user.phone = self.phone
+        user.set_password("12345678")
+        user.save()
+        super().save(*args, **kwargs)
 
 
 class Serum(models.Model):
