@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from dozes.views import *
 from rest_framework import routers
+from rest_framework.authtoken import views as auth_views
+path('api-token-auth/', auth_views.obtain_auth_token, name='api-token-auth'),
 router = routers.DefaultRouter()
 router.register(r'children/', ChildViewSet)
 

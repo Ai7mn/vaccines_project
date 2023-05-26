@@ -19,24 +19,20 @@ class ChildSerializer(serializers.ModelSerializer):
 
 
 class DoseSerializer(serializers.ModelSerializer):
-    child_serial = serializers.CharField(source='child.serial')
-    child_first_name = serializers.CharField(source='child.first_name')
-    child_second_name = serializers.CharField(source='child.second_name')
-    child_last_name = serializers.CharField(source='child.last_name')
 
     class Meta:
         model = Dose
-        fields = ['visit_date', 'is_taken', 'next_visit', 'dose', 'child_serial', 'child_first_name',
-                  'child_second_name', 'child_last_name']
+        fields = '__all__'
 
 
 class VisitSerializer(serializers.ModelSerializer):
     child = ChildSerializer()
-    dose = DoseSerializer()
+    dose = serializers.StringRelatedField(many=True)
 
     class Meta:
         model = Visit
-        fields = ['visit_date', 'is_taken', 'next_visit', 'dose', 'child', 'next_visit_date']
+        fields = ['next_visit_date', 'is_taken', 'next_visit', 'dose', 'child', 'next_visit_date']
+
 
 class RecommendationsSerializer(serializers.ModelSerializer):
     class Meta:
