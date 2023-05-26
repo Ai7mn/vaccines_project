@@ -18,6 +18,11 @@ class ChildViewSet(viewsets.ModelViewSet):
     queryset = Child.objects.all()
     serializer_class = ChildSerializer
 
+    def get_queryset(self):
+        user = self.request.user
+        queryset = Child.objects.filter(user=user)
+        return queryset
+
 
 class VisitAPIView(APIView):
     def get(self, request, format=None):
