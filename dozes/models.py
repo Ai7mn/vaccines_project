@@ -86,6 +86,7 @@ class Visit(models.Model):
     dose = models.ManyToManyField('Dose', verbose_name="الجرع")
     is_taken = models.BooleanField(default=False)
     next_visit = models.PositiveIntegerField(null=True, verbose_name="الزيارة القادمة بعد")
+    next_visit_date = models.DateField(null=True)
 
     # Other fields as needed
 
