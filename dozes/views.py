@@ -22,7 +22,7 @@ class ChildViewSet(viewsets.ModelViewSet):
 class VisitAPIView(APIView):
     def get(self, request, format=None):
         user = request.user
-        child = Child.objects.filter(user=user)
+        child = Child.objects.get(user=user)
         visits = Visit.objects.filter(child=child)
         is_taken = request.query_params.get('is_taken')
         if is_taken is not None:
