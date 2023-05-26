@@ -20,7 +20,7 @@ from rest_framework import routers
 from rest_framework.authtoken import views as auth_views
 
 router = routers.DefaultRouter()
-router.register(r'children/', ChildViewSet)
+router.register(r'children', ChildViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
