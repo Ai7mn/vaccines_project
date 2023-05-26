@@ -61,13 +61,14 @@ class Child(models.Model):
         return f"{self.first_name} {self.second_name}"
 
     def save(self, *args, **kwargs):
-        user = MyUser()
-        user.username = self.serial
-        user.first_name = self.first_name
-        user.last_name = self.last_name
-        user.phone = self.phone
-        user.set_password("12345678")
-        user.save()
+        if not self.pk:
+            user = MyUser()
+            user.username = self.serial
+            user.first_name = self.first_name
+            user.last_name = self.last_name
+            user.phone = self.phone
+            user.set_password("12345678")
+            user.save()
         super().save(*args, **kwargs)
 
 
