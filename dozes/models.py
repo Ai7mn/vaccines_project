@@ -91,7 +91,7 @@ class Visit(models.Model):
     # Other fields as needed
 
     def __str__(self):
-        return f"{self.child.name}زيارة الطفل "
+        return f"{self.child} زيارة الطفل "
 
 
 class Dose(models.Model):
