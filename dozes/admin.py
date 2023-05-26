@@ -6,12 +6,14 @@ from .models import Child, Serum, Dose, Visit, Recommendations, Governorate, Dir
 
 
 class ChildAdmin(admin.ModelAdmin):
-    list_display = ('first_name', 'second_name', 'last_name', 'phone', 'serial', 'gender', 'directorate', 'date_of_birth')
-    fields = ('first_name', 'second_name', 'last_name', 'phone', 'serial', 'gender', 'directorate', 'date_of_birth')
-    exclude = ('user',)
+    list_display = (
+    'user', 'first_name', 'second_name', 'last_name', 'phone', 'serial', 'gender', 'directorate', 'date_of_birth')
+    fields = (
+    'user', 'first_name', 'second_name', 'last_name', 'phone', 'serial', 'gender', 'directorate', 'date_of_birth')
 
 
-admin.site.register(Child,ChildAdmin)
+
+admin.site.register(Child, ChildAdmin)
 admin.site.register(Serum)
 admin.site.register(Dose)
 admin.site.register(Visit)
