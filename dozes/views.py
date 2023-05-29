@@ -3,6 +3,9 @@ from datetime import date, timedelta
 from django.db.models import ExpressionWrapper, F, Value
 from django.db.models.functions import Now
 from datetime import timedelta
+
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.shortcuts import render
 
 # Create your views here.
@@ -45,3 +48,7 @@ class RecommendationsAPIView(APIView):
         recommendations = Recommendations.objects.filter(user=user)
         serializer = RecommendationsSerializer(recommendations, many=True)
         return Response(serializer.data)
+
+
+def redirect_to_admin(request):
+    return HttpResponseRedirect(reverse("admin:login"))

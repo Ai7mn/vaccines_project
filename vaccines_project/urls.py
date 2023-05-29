@@ -19,12 +19,14 @@ from dozes.views import *
 from rest_framework import routers
 from rest_framework.authtoken import views as auth_views
 
+admin.autodiscover()
 router = routers.DefaultRouter()
 router.register(r'children', ChildViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    path("", redirect_to_admin, name="to_admin"),
     path('api-token-auth/', auth_views.obtain_auth_token, name='api-token-auth'),
     path('api/visits/', VisitAPIView.as_view(), name='visit-api'),
     path('api/recommendations/', RecommendationsAPIView.as_view(), name='recommendations-api'),
