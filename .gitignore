@@ -26,7 +26,7 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
-/vaccines_project/settings.py
+# /vaccines_project/settings.py
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
