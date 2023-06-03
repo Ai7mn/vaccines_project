@@ -11,7 +11,7 @@ class MyUserSerializer(serializers.ModelSerializer):
 
 
 class ChildSerializer(serializers.ModelSerializer):
-    user = MyUserSerializer()
+    user = MyUserSerializer(read_only=True)
 
     class Meta:
         model = Child

@@ -67,7 +67,7 @@ class Child(models.Model):
             user.first_name = self.first_name
             user.last_name = self.last_name
             user.phone = self.phone
-            user.set_password("12345678")
+            user.set_password(str(self.phone))
             user.save()
             self.user = user
         super().save(*args, **kwargs)
