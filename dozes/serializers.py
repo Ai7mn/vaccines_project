@@ -7,7 +7,7 @@ from .models import *
 class MyUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = MyUser
-        fields = '__all__'
+        fields = ('username', 'password', 'phone', 'first_name', 'last_name', 'is_active', 'is_staff', 'is_superuser', )
 
 
 class ChildSerializer(serializers.ModelSerializer):

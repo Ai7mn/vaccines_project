@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from dozes.views import *
+from accounts.views import *
 from rest_framework import routers
 from rest_framework.authtoken import views as auth_views
 
@@ -30,4 +31,5 @@ urlpatterns = [
     path('api-token-auth/', auth_views.obtain_auth_token, name='api-token-auth'),
     path('api/visits/', VisitAPIView.as_view(), name='visit-api'),
     path('api/recommendations/', RecommendationsAPIView.as_view(), name='recommendations-api'),
+    path('api/users/', MyUserAPIView.as_view(), name='users-api'),
 ]
