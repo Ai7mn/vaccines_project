@@ -69,6 +69,7 @@ class Child(models.Model):
             user.phone = self.phone
             user.set_password("12345678")
             user.save()
+            self.user = user
         super().save(*args, **kwargs)
 
 

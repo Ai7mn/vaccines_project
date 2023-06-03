@@ -44,8 +44,7 @@ class VisitAPIView(APIView):
 
 class RecommendationsAPIView(APIView):
     def get(self, request, format=None):
-        user = request.user
-        recommendations = Recommendations.objects.filter(user=user)
+        recommendations = Recommendations.objects.all()
         serializer = RecommendationsSerializer(recommendations, many=True)
         return Response(serializer.data)
 
