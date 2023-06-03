@@ -85,7 +85,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'HOST': 'devicesarenadb.mysql.database.azure.com',
         'PORT': '3306',
-        'NAME': 'vaccineapi',
+        'NAME': 'vaccineapi2',
         'USER': 'ali',
         'PASSWORD': 'Ali1@1',
     },
