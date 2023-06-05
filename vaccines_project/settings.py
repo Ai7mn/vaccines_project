@@ -83,6 +83,14 @@ CA_LOC = os.path.join(BASE_DIR, "../DigiCertGlobalRootCA.crt.pem")
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
+        'HOST': 'ulsq0qqx999wqz84.chr7pe7iynqr.eu-west-1.rds.amazonaws.com',
+        'PORT': '3306',
+        'NAME': 'vcvdxbksigmaev5m',
+        'USER': 'dwbipkkiy7iy1phq',
+        'PASSWORD': 'vcvdxbksigmaev5m',
+    },
+    'default2': {
+        'ENGINE': 'django.db.backends.mysql',
         'HOST': 'devicesarenadb.mysql.database.azure.com',
         'PORT': '3306',
         'NAME': 'vaccineapi',
