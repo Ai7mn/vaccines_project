@@ -32,4 +32,5 @@ urlpatterns = [
     path('api/visits/', VisitAPIView.as_view(), name='visit-api'),
     path('api/recommendations/', RecommendationsAPIView.as_view(), name='recommendations-api'),
     path('api/users/', MyUserAPIView.as_view(), name='users-api'),
+    path('api/user_data/', GetUser.as_view(), name='user-api'),
 ]

@@ -10,6 +10,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework import status
 from dozes.models import *
@@ -81,3 +82,17 @@ class RecommendationsAPIView(APIView):
 
 def redirect_to_admin(request):
     return HttpResponseRedirect(reverse("admin:login"))
+
+
+class GetUser(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, format=None):
+        user = request.user
+        content = {
+            'username': user.username,
+            'phone': user.phone,
+            'first_name': user.first_name,
+            'last_name': user.last_name
+        }
+        return Response(content)
