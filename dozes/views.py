@@ -56,7 +56,18 @@ class ChildViewSet(viewsets.ModelViewSet):
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
+    
+    def put(self, request, pk):
+        try:
+            child = Child.objects.get(pk=pk)
+        except MyUser.DoesNotExist:
+            return Response({"message": "User not to update found."}, status=404)
 
+        serializer = ChildSerializer(child, data=request.data)
+        if serializer.is_valid():
+            child = serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=400)
 
 class VisitAPIView(APIView):
     def get(self, request, format=None):
