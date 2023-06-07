@@ -31,7 +31,7 @@ class VisitSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Visit
-        fields = ['next_visit_date', 'is_taken', 'next_visit', 'dose', 'child', 'next_visit_date']
+        fields = ['next_visit_date', 'is_taken', 'next_visit','visit_date', 'dose', 'child', 'next_visit_date']
 
 
 class RecommendationsSerializer(serializers.ModelSerializer):
