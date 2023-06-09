@@ -101,9 +101,15 @@ class GetUser(APIView):
     def get(self, request, format=None):
         user = request.user
         content = {
+            'id':user.id,
             'username': user.username,
             'phone': user.phone,
             'first_name': user.first_name,
-            'last_name': user.last_name
+            'last_name': user.last_name,
+            'is_superuser':user.is_superuser,
+            'is_staff':user.is_staff,
+            'is_active':user.is_active
+            
+
         }
         return Response(content)
