@@ -18,6 +18,8 @@ from .serializers import *
 from rest_framework.response import Response
 
 
+
+
 class ChildViewSet(viewsets.ModelViewSet):
     queryset = Child.objects.all()
     serializer_class = ChildSerializer
@@ -43,7 +45,7 @@ class ChildViewSet(viewsets.ModelViewSet):
         # user.first_name = first_name
         # user.last_name = last_name
         # user.phone = phone_number
-        # user.set_password("12345678")
+        # user.set_password("12345678") 
         # user.save()
         # data['user.username'] = phone_number
         # data['user.first_name'] = first_name
@@ -56,18 +58,19 @@ class ChildViewSet(viewsets.ModelViewSet):
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
-    
-    def put(self, request, pk):
-        try:
-            child = Child.objects.get(pk=pk)
-        except MyUser.DoesNotExist:
-            return Response({"message": "User not to update found."}, status=404)
+    # def perform_update(self, serializer):
+    #     serializer.save()
+    # def put(self, request, pk):
+    #     try:
+    #         child = Child.objects.get(pk=pk)
+    #     except MyUser.DoesNotExist:
+    #         return Response({"message": "User not to update found."}, status=404)
 
-        serializer = ChildSerializer(child, data=request.data)
-        if serializer.is_valid():
-            child = serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=400)
+    #     serializer = ChildSerializer(child, data=request.data)
+    #     if serializer.is_valid():
+    #         child = serializer.save()
+    #         return Response(serializer.data)
+    #     return Response(serializer.errors, status=400)
 
 class VisitAPIView(APIView):
     def get(self, request, format=None):

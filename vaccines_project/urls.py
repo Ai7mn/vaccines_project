@@ -25,7 +25,7 @@ router = routers.DefaultRouter()
 router.register(r'children', ChildViewSet)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls), 
     path('api/', include(router.urls)),
     path("", redirect_to_admin, name="to_admin"),
     path('api-token-auth/', auth_views.obtain_auth_token, name='api-token-auth'),
@@ -33,4 +33,9 @@ urlpatterns = [
     path('api/recommendations/', RecommendationsAPIView.as_view(), name='recommendations-api'),
     path('api/users/', MyUserAPIView.as_view(), name='users-api'),
     path('api/user_data/', GetUser.as_view(), name='user-api'),
-]
+    path('api/allusers/', AllUserApi.as_view(), name='userall'),
+    path('api/allusers/<int:pk>/', AllUserApiDetails.as_view(), name='userall'),
+    path('api/allchild/', AllChildApi.as_view(), name='allchild'),
+    path('api/allchild/<int:pk>/', AllChildApiDetails.as_view(), name='allchild'),
+] 
+    

@@ -69,8 +69,19 @@ class Child(models.Model):
             user.phone = self.phone
             user.set_password(str(self.phone))
             user.save()
-            self.user = user
+            self.user = user  
+        else:  # If the object already exists, update the associated user object as well
+            self.user.username = self.serial
+            self.user.first_name = self.first_name
+            self.user.last_name = self.last_name
+            self.user.phone = self.phone
+            self.user.set_password(str(self.phone))
+            self.user.save()
         super().save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        self.user.delete()  # Delete the associated user object as well
+        super().delete(*args, **kwargs)
 
 
 class Serum(models.Model):

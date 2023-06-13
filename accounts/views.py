@@ -1,13 +1,44 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import MyUser
-from dozes.serializers import MyUserSerializer
+from dozes.serializers import *
+from rest_framework import generics
 
+
+# editable api
+class AllUserApi(generics.ListCreateAPIView):
+    queryset=MyUser.objects.all()
+    serializer_class=UserAllSerializer
+    def get(self,request):
+        users=MyUser.objects.all()
+        serializers=UserAllSerializer(users,many=True)
+        return Response(serializers.data)
+      
+class AllUserApiDetails(generics.RetrieveUpdateDestroyAPIView):
+    queryset=MyUser.objects.all()
+    serializer_class=UserAllSerializer
+
+ 
+class AllChildApi(generics.ListCreateAPIView): 
+    queryset=Child.objects.all() 
+    serializer_class=ChildAllSerializer
+    def get(self,request):
+        users=Child.objects.all()
+        serializers=ChildAllSerializer(users,many=True)
+        return Response(serializers.data)
+
+class AllChildApiDetails(generics.RetrieveUpdateDestroyAPIView):
+    queryset=Child.objects.all()
+    serializer_class=ChildAllSerializer
+
+
+
+# end
 
 class MyUserAPIView(APIView):
     def get(self, request):
         users = MyUser.objects.all()
-        serializer = MyUserSerializer(users, many=True)
+        serializer = MyUserSerializer(users, many=True)              
         return Response(serializer.data)
     
     def post(self, request):
