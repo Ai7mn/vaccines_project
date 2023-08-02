@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from .models import MyUser
 from dozes.serializers import *
 from rest_framework import generics
-
+from django.contrib.auth.hashers import make_password
 
 # editable api
 class AllUserApi(generics.ListCreateAPIView):
@@ -18,6 +18,25 @@ class AllUserApiDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset=MyUser.objects.all()
     serializer_class=UserAllSerializer
 
+    def put(self, request, *args, **kwargs):
+        # Get the user object to update
+        user = self.get_object()
+
+        # Get the new password from the request data
+        new_password = request.data.get('password')
+
+        # Hash the new password using Django's make_password() function
+        hashed_password = make_password(new_password)
+
+        # Update the user's password with the hashed password
+        user.password = hashed_password
+
+        # Save the updated user object to the database
+        user.save()
+
+        # Serialize the updated user object and return it in the response
+        serializer = UserAllSerializer(user)
+        return Response(serializer.data)
  
 class AllChildApi(generics.ListCreateAPIView): 
     queryset=Child.objects.all() 
