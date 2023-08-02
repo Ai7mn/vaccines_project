@@ -22,14 +22,24 @@ class AllUserApiDetails(generics.RetrieveUpdateDestroyAPIView):
         # Get the user object to update
         user = self.get_object()
 
-        # Get the new password from the request data
+        # Get the new password, is_staff, is_active, and is_superuser values from the request data
         new_password = request.data.get('password')
+        is_staff = request.data.get('is_staff')
+        is_active = request.data.get('is_active')
+        is_superuser = request.data.get('is_superuser')
 
         # Hash the new password using Django's make_password() function
-        hashed_password = make_password(new_password)
+        if new_password:
+            hashed_password = make_password(new_password)
+            user.password = hashed_password
 
-        # Update the user's password with the hashed password
-        user.password = hashed_password
+        # Update the user's is_staff, is_active, and is_superuser attributes
+        if is_staff is not None:
+            user.is_staff = is_staff
+        if is_active is not None:
+            user.is_active = is_active
+        if is_superuser is not None:
+            user.is_superuser = is_superuser
 
         # Save the updated user object to the database
         user.save()
@@ -37,6 +47,25 @@ class AllUserApiDetails(generics.RetrieveUpdateDestroyAPIView):
         # Serialize the updated user object and return it in the response
         serializer = UserAllSerializer(user)
         return Response(serializer.data)
+    # def put(self, request, *args, **kwargs):
+    #     # Get the user object to update
+    #     user = self.get_object()
+
+    #     # Get the new password from the request data
+    #     new_password = request.data.get('password')
+
+    #     # Hash the new password using Django's make_password() function
+    #     hashed_password = make_password(new_password)
+
+    #     # Update the user's password with the hashed password
+    #     user.password = hashed_password
+
+    #     # Save the updated user object to the database
+    #     user.save()
+
+    #     # Serialize the updated user object and return it in the response
+    #     serializer = UserAllSerializer(user)
+    #     return Response(serializer.data)
  
 class AllChildApi(generics.ListCreateAPIView): 
     queryset=Child.objects.all() 
